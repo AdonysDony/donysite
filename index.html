@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Animation</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden; /* Prevents scrollbar from appearing */
+        }
+        .container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            background: url('QUADRILLAGE2.png') no-repeat center center fixed;
+            background-size: cover; /* Makes the blue image very large */
+        }
+        .gradient {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: url('dégradé rose.png') no-repeat center center;
+            background-size: cover;
+            pointer-events: none; /* Ensures the gradient image doesn't interfere with interaction */
+            z-index: 3; /* Higher value to ensure it is on top */
+        }
+        .lines {
+            position: absolute;
+            width: 2000px; /* Adjust size as needed */
+            animation: moveLines 20s linear infinite; /* Adjust duration for speed */
+            z-index: 1; /* Mid-level value */
+        }
+        .grid {
+            position: absolute;
+            width: 4500px; /* Adjust size as needed */
+            transform: rotate(-5deg) translateY(-500px); /* Rotate the grid */
+            animation: moveGrid 15s linear infinite; /* Adjust duration for speed */
+            z-index: 2; /* Lower value to stay under the gradient */
+        }
+        .frame {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('Subtract.png') no-repeat center center;
+            background-size: 100% 100%; /* Stretch to fit the viewport */
+            pointer-events: none; /* Ensures the frame doesn't interfere with interaction */
+            z-index: 4; /* Highest value to ensure it is on top of everything */
+        }
+        @keyframes moveLines {
+            from {
+                left: 100vw; /* Start at the right edge */
+            }
+            to {
+                left: 100vw; /* End slightly off-screen to the left */
+            }
+        }
+        @keyframes moveGrid {
+            from {
+                left: 0vw; /* Start at the right edge */
+                top: 0px;
+            }
+            to {
+                left: -1345px; /* End slightly off-screen to the left */
+                top: 117px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="gradient"></div>
+        <img src="barres.png" class="lines" style="top: 50px; animation-delay: 0s;">
+        <img src="QUADRILLAGE.png" class="grid" style="top: 150px; animation-delay: 0s;">
+        <div class="frame"></div> <!-- Add the frame element here -->
+    </div>
+</body>
+</html>

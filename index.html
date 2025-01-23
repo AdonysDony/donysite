@@ -5,11 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Image Animation</title>
     <style>
+	@import url('https://fonts.googleapis.com/css2?family=Lexend+Giga:wght@100..900&display=swap');
         body {
             margin: 0;
             overflow: hidden; /* Prevents scrollbar from appearing */
             width: 100vw;
             height: 100vh;
+	    font-family: 'Lexend Giga', serif;
+	    font-weight: 500;
         }
         .container {
             position: fixed; /* Fix the container to the viewport */
@@ -53,6 +56,177 @@
             pointer-events: none; /* Ensures the frame doesn't interfere with interaction */
             z-index: 4; /* Highest value to ensure it is on top of everything */
         }
+	.button-yt {
+            position: absolute;
+	    border: none;
+	    width: 20vh;
+	    height: 20vh;
+	    left: 10%;
+	    top: 60%;
+	    aspect-ratio: 1 / 1;
+	    background: url('youtube.png') no-repeat center center;
+	    background-size: 100% 100%;
+	    cursor: pointer;
+            z-index: 5; /* Highest value to ensure it is on top of everything */
+        }
+	@media only screen and (max-width: 1050px) {
+  	.button-yt {
+    		width: 13vh; /* Adjust width for smaller screens */
+    		height: 13vh; /* Adjust height for smaller screens */
+  		}
+	}
+	@media only screen and (max-width: 450px) {
+  	.button-yt {
+    		width: 7vh; /* Adjust width for smaller screens */
+    		height: 7vh; /* Adjust height for smaller screens */
+  		}
+	}
+	.button-yt:hover {
+	    background: url('youtube2.png') no-repeat center center;
+	    background-size: 100% 100%;
+        }
+	.button-in {
+            position: absolute;
+	    border: none;
+	    width: 20vh;
+	    height: 20vh;
+	    left: 30%;
+	    top: 60%;
+	    aspect-ratio: 1 / 1;
+	    background: url('instagram.png') no-repeat center center;
+	    background-size: 100% 100%;
+	    cursor: pointer;
+            z-index: 5; /* Highest value to ensure it is on top of everything */
+        }
+	@media only screen and (max-width: 1050px) {
+  	.button-in {
+    		width: 13vh; /* Adjust width for smaller screens */
+    		height: 13vh; /* Adjust height for smaller screens */
+  		}
+	}
+	@media only screen and (max-width: 450px) {
+  	.button-in {
+    		width: 7vh; /* Adjust width for smaller screens */
+    		height: 7vh; /* Adjust height for smaller screens */
+  		}
+	}
+	.button-in:hover {
+	    background: url('instagram2.png') no-repeat center center;
+	    background-size: 100% 100%;
+        }
+	.button-bs {
+            position: absolute;
+	    border: none;
+	    width: 20vh;
+	    height: 20vh;
+	    right: 30%;
+	    top: 60%;
+	    aspect-ratio: 1 / 1;
+	    background: url('bsky.png') no-repeat center center;
+	    background-size: 100% 100%;
+	    cursor: pointer;
+            z-index: 5; /* Highest value to ensure it is on top of everything */
+        }
+	@media only screen and (max-width: 1050px) {
+  	.button-bs {
+    		width: 13vh; /* Adjust width for smaller screens */
+    		height: 13vh; /* Adjust height for smaller screens */
+  		}
+	}
+	@media only screen and (max-width: 450px) {
+  	.button-bs {
+    		width: 7vh; /* Adjust width for smaller screens */
+    		height: 7vh; /* Adjust height for smaller screens */
+  		}
+	}
+	.button-bs:hover {
+	    background: url('bsky2.png') no-repeat center center;
+	    background-size: 100% 100%;
+        }
+	.button-ti {
+            position: absolute;
+	    border: none;
+	    width: 20vh;
+	    height: 20vh;
+	    right: 10%;
+	    top: 60%;
+	    aspect-ratio: 1 / 1;
+	    background: url('tiktok.png') no-repeat center center;
+	    background-size: 100% 100%;
+	    cursor: pointer;
+            z-index: 5; /* Highest value to ensure it is on top of everything */
+        }
+	@media only screen and (max-width: 1050px) {
+  	.button-ti {
+    		width: 13vh; /* Adjust width for smaller screens */
+    		height: 13vh; /* Adjust height for smaller screens */
+  		}
+	}
+	@media only screen and (max-width: 450px) {
+  	.button-ti {
+    		width: 7vh; /* Adjust width for smaller screens */
+    		height: 7vh; /* Adjust height for smaller screens */
+  		}
+	}
+	.button-ti:hover {
+	    background: url('tiktok2.png') no-repeat center center;
+	    background-size: 100% 100%;
+        }
+	.button-mu {
+    		position: absolute;
+    		border: none;
+    		width: 20vh;
+    		height: 20vh;
+    		left: 50%;
+    		bottom: 10%; /* Adjust this value if you want the button higher or lower */
+    		transform: translateX(-50%);
+    		aspect-ratio: 1 / 1;
+    		background: url('music.png') no-repeat center center;
+    		background-size: 100% 100%;
+    		cursor: pointer;
+    		z-index: 5; /* Highest value to ensure it is on top of everything */
+	}
+	@media only screen and (max-width: 1050px) {
+  	.button-mu {
+    		width: 13vh; /* Adjust width for smaller screens */
+    		height: 13vh; /* Adjust height for smaller screens */
+  		}
+	}
+	@media only screen and (max-width: 450px) {
+  	.button-mu {
+    		width: 7vh; /* Adjust width for smaller screens */
+    		height: 7vh; /* Adjust height for smaller screens */
+  		}
+	}
+	.button-mu:hover {
+	    background: url('music2.png') no-repeat center center;
+	    background-size: 100% 100%;
+        }
+	.centered-text {
+	    position: absolute;
+	    left: 50%;
+	    top: 50%;
+            text-align: center;
+            font-size: 70px;
+            font-weight: 700;
+	    color: white;
+	    z-index: 6;
+	    transform: translateX(-50%) translateY(-50%);
+        }
+	.dony {
+    		position: absolute;
+    		border: none;
+    		width: 70vh;
+    		height: 70vh;
+    		left: 50%;
+    		top: -10%; /* Adjust this value if you want the button higher or lower */
+    		transform: translateX(-50%);
+    		aspect-ratio: 1 / 1;
+    		background: url('idledony.gif') no-repeat center center;
+    		background-size: 100% 100%;
+    		cursor: pointer;
+    		z-index: 4; /* Highest value to ensure it is on top of everything */
+	}
         @keyframes moveLines {
             from {
                 left: 100vw; /* Start at the right edge */
@@ -79,6 +253,58 @@
         <img src="barres.png" class="lines" style="top: 50px; animation-delay: 0s;">
         <img src="QUADRILLAGE.png" class="grid" style="top: 150px; animation-delay: 0s;">
         <div class="frame"></div> <!-- Add the frame element here -->
+	<a href="https://www.youtube.com/@Adonys">
+		<button class=button-yt></button>
+	</a>
+	<a href="https://www.instagram.com/adonysyt">
+		<button class=button-in></button>
+	</a>
+	<a href="https://bsky.app/profile/adonys.yt">
+		<button class=button-bs></button>
+	</a>
+	<a href="https://www.tiktok.com/@adonysyt">
+		<button class=button-ti></button>
+	</a>
+	<audio id="bg-music" loop class=music volume=10%>
+        	<source src="2masterinst.mp3" type="audio/mpeg">
+        	Your browser does not support the audio element.
+    	</audio>
+	<button class=button-mu onClick=playAudio()></button>
+	<button class=dony id="donybutton"></button>
+	<div class=centered-text>yo</div>
+	<script>
+        	const button = document.getElementById('donybutton');
+        	const gif1 = 'idledony.gif';
+        	const gif2 = 'donytalk.gif';
+		const audio = document.getElementById('bg-music');
+
+        	button.style.backgroundImage = `url(${gif1})`;
+
+        	button.addEventListener('click', () => {
+            	button.style.backgroundImage = `url(${gif2})`;
+
+            	// Get the duration of the second GIF
+            	const img = new Image();
+            	img.src = gif2;
+            	img.onload = () => {
+            	    setTimeout(() => {
+            	        button.style.backgroundImage = `url(${gif1})`;
+            	    }, 500); // Convert duration to milliseconds
+            	};
+        	});
+    
+		let isPlaying = false;
+
+		function playAudio() {
+			audio.volume = 0.1;
+    			if (isPlaying) {
+        			audio.pause();
+    			} else {
+        			audio.play();
+    			}
+    			isPlaying = !isPlaying;
+		}
+	</script>
     </div>
 </body>
 </html>

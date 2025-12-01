@@ -1,311 +1,388 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Adonys (yo)</title>
-    <link rel="icon" href="donyico.ico" type="image/x-icon">
-    <style>
-	@import url('https://fonts.googleapis.com/css2?family=Lexend+Giga:wght@100..900&display=swap');
-        body {
-            margin: 0;
-            overflow: hidden; /* Prevents scrollbar from appearing */
-            width: 100vw;
-            height: 100vh;
-	    font-family: 'Lexend Giga', serif;
-	    font-weight: 500;
-        }
-        .container {
-            position: fixed; /* Fix the container to the viewport */
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('QUADRILLAGE2.png') no-repeat center center fixed;
-            background-size: cover; /* Makes the blue image very large */
-        }
-        .gradient {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: url('dégradé rose.png') no-repeat center center;
-            background-size: cover;
-            pointer-events: none; /* Ensures the gradient image doesn't interfere with interaction */
-            z-index: 3; /* Higher value to ensure it is on top */
-        }
-        .lines {
-            position: absolute;
-            width: 2000px; /* Adjust size as needed */
-            animation: moveLines 20s linear infinite; /* Adjust duration for speed */
-            z-index: 1; /* Mid-level value */
-        }
-        .grid {
-            position: absolute;
-            width: 4500px; /* Adjust size as needed */
-            transform: rotate(-5deg) translateY(-500px); /* Rotate the grid */
-            animation: moveGrid 15s linear infinite; /* Adjust duration for speed */
-            z-index: 2; /* Lower value to stay under the gradient */
-        }
-        .frame {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('Subtract.png') no-repeat center center;
-            background-size: 100% 100%; /* Stretch to fit the viewport */
-            pointer-events: none; /* Ensures the frame doesn't interfere with interaction */
-            z-index: 4; /* Highest value to ensure it is on top of everything */
-        }
-	.button-yt {
-            position: absolute;
-	    border: none;
-	    width: 20vh;
-	    height: 20vh;
-	    left: 10%;
-	    top: 60%;
-	    aspect-ratio: 1 / 1;
-	    background: url('youtube.png') no-repeat center center;
-	    background-size: 100% 100%;
-	    cursor: pointer;
-            z-index: 5; /* Highest value to ensure it is on top of everything */
-        }
-	@media only screen and (max-width: 1050px) {
-  	.button-yt {
-    		width: 13vh; /* Adjust width for smaller screens */
-    		height: 13vh; /* Adjust height for smaller screens */
-  		}
-	}
-	@media only screen and (max-width: 450px) {
-  	.button-yt {
-    		width: 7vh; /* Adjust width for smaller screens */
-    		height: 7vh; /* Adjust height for smaller screens */
-  		}
-	}
-	.button-yt:hover {
-	    background: url('youtube2.png') no-repeat center center;
-	    background-size: 100% 100%;
-        }
-	.button-in {
-            position: absolute;
-	    border: none;
-	    width: 20vh;
-	    height: 20vh;
-	    left: 30%;
-	    top: 60%;
-	    aspect-ratio: 1 / 1;
-	    background: url('instagram.png') no-repeat center center;
-	    background-size: 100% 100%;
-	    cursor: pointer;
-            z-index: 5; /* Highest value to ensure it is on top of everything */
-        }
-	@media only screen and (max-width: 1050px) {
-  	.button-in {
-    		width: 13vh; /* Adjust width for smaller screens */
-    		height: 13vh; /* Adjust height for smaller screens */
-  		}
-	}
-	@media only screen and (max-width: 450px) {
-  	.button-in {
-    		width: 7vh; /* Adjust width for smaller screens */
-    		height: 7vh; /* Adjust height for smaller screens */
-  		}
-	}
-	.button-in:hover {
-	    background: url('instagram2.png') no-repeat center center;
-	    background-size: 100% 100%;
-        }
-	.button-bs {
-            position: absolute;
-	    border: none;
-	    width: 20vh;
-	    height: 20vh;
-	    right: 30%;
-	    top: 60%;
-	    aspect-ratio: 1 / 1;
-	    background: url('bsky.png') no-repeat center center;
-	    background-size: 100% 100%;
-	    cursor: pointer;
-            z-index: 5; /* Highest value to ensure it is on top of everything */
-        }
-	@media only screen and (max-width: 1050px) {
-  	.button-bs {
-    		width: 13vh; /* Adjust width for smaller screens */
-    		height: 13vh; /* Adjust height for smaller screens */
-  		}
-	}
-	@media only screen and (max-width: 450px) {
-  	.button-bs {
-    		width: 7vh; /* Adjust width for smaller screens */
-    		height: 7vh; /* Adjust height for smaller screens */
-  		}
-	}
-	.button-bs:hover {
-	    background: url('bsky2.png') no-repeat center center;
-	    background-size: 100% 100%;
-        }
-	.button-ti {
-            position: absolute;
-	    border: none;
-	    width: 20vh;
-	    height: 20vh;
-	    right: 10%;
-	    top: 60%;
-	    aspect-ratio: 1 / 1;
-	    background: url('tiktok.png') no-repeat center center;
-	    background-size: 100% 100%;
-	    cursor: pointer;
-            z-index: 5; /* Highest value to ensure it is on top of everything */
-        }
-	@media only screen and (max-width: 1050px) {
-  	.button-ti {
-    		width: 13vh; /* Adjust width for smaller screens */
-    		height: 13vh; /* Adjust height for smaller screens */
-  		}
-	}
-	@media only screen and (max-width: 450px) {
-  	.button-ti {
-    		width: 7vh; /* Adjust width for smaller screens */
-    		height: 7vh; /* Adjust height for smaller screens */
-  		}
-	}
-	.button-ti:hover {
-	    background: url('tiktok2.png') no-repeat center center;
-	    background-size: 100% 100%;
-        }
-	.button-mu {
-    		position: absolute;
-    		border: none;
-    		width: 20vh;
-    		height: 20vh;
-    		left: 50%;
-    		bottom: 10%; /* Adjust this value if you want the button higher or lower */
-    		transform: translateX(-50%);
-    		aspect-ratio: 1 / 1;
-    		background: url('music.png') no-repeat center center;
-    		background-size: 100% 100%;
-    		cursor: pointer;
-    		z-index: 5; /* Highest value to ensure it is on top of everything */
-	}
-	@media only screen and (max-width: 1050px) {
-  	.button-mu {
-    		width: 13vh; /* Adjust width for smaller screens */
-    		height: 13vh; /* Adjust height for smaller screens */
-  		}
-	}
-	@media only screen and (max-width: 450px) {
-  	.button-mu {
-    		width: 7vh; /* Adjust width for smaller screens */
-    		height: 7vh; /* Adjust height for smaller screens */
-  		}
-	}
-	.button-mu:hover {
-	    background: url('music2.png') no-repeat center center;
-	    background-size: 100% 100%;
-        }
-	.centered-text {
-	    position: absolute;
-	    left: 50%;
-	    top: 50%;
-            text-align: center;
-            font-size: 70px;
-            font-weight: 700;
-	    color: white;
-	    z-index: 6;
-	    transform: translateX(-50%) translateY(-50%);
-        }
-	.dony {
-    		position: absolute;
-    		border: none;
-    		width: 70vh;
-    		height: 70vh;
-    		left: 50%;
-    		top: -10%; /* Adjust this value if you want the button higher or lower */
-    		transform: translateX(-50%);
-    		aspect-ratio: 1 / 1;
-    		background: url('idledony.gif') no-repeat center center;
-    		background-size: 100% 100%;
-    		cursor: pointer;
-    		z-index: 4; /* Highest value to ensure it is on top of everything */
-	}
-        @keyframes moveLines {
-            from {
-                left: 100vw; /* Start at the right edge */
-            }
-            to {
-                left: 100vw; /* End slightly off-screen to the left */
-            }
-        }
-        @keyframes moveGrid {
-            from {
-                left: 0vw; /* Start at the right edge */
-                top: 0px;
-            }
-            to {
-                left: -1345px; /* End slightly off-screen to the left */
-                top: 117px;
-            }
-        }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Adonys (yo)</title>
+  <link rel="icon" href="donyico.ico" type="image/x-icon" />
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Lexend+Giga:wght@100;300;500;700;900&display=swap');
+
+    :root{
+      --btn-large: 20vh;
+      --btn-medium: 13vh;
+      --btn-small: 7vh;
+      --btn-default-size: var(--btn-large);
+      --blend-mode: screen;
+    }
+
+    html, body { height: 100%; margin: 0; }
+    body {
+      overflow: hidden;
+      width: 100vw;
+      height: 100vh;
+      font-family: 'Lexend Giga', sans-serif;
+      font-weight: 500;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      background: #000;
+    }
+
+    .container {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      background: url('QUADRILLAGE2.png') no-repeat center center fixed;
+      background-size: cover;
+      z-index: 0;
+    }
+
+    .gradient {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(255, 25, 180, .9), rgba(255, 105, 180, 0));
+      background-size: cover;
+      pointer-events: none;
+      z-index: 4;
+    }
+
+    #gridCanvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 2;
+      pointer-events: none;
+      mix-blend-mode: var(--blend-mode);
+      will-change: transform;
+      image-rendering: optimizeSpeed;
+    }
+
+    .frame {
+      position: fixed;
+      inset: 0;
+      background: url('Subtract.png') no-repeat center center;
+      background-size: 100% 100%;
+      pointer-events: none;
+      z-index: 5;
+      opacity: 0.65;
+    }
+
+    .social-button,
+    .button-mu,
+    .dony {
+      position: absolute;
+      border: none;
+      padding: 0;
+      margin: 0;
+      width: var(--btn-default-size);
+      height: var(--btn-default-size);
+      aspect-ratio: 1 / 1;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 100% 100%;
+      background-color: transparent;
+      cursor: pointer;
+      z-index: 6;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      box-shadow: none;
+    }
+
+    .button-yt { left: 10%; top: 60%; background-image: url('youtube.svg'); }
+    .button-in { left: 30%; top: 60%; background-image: url('instagram.svg'); }
+    .button-bs { right: 30%; top: 60%; background-image: url('bsky.svg'); }
+    .button-ti { right: 10%; top: 60%; background-image: url('tiktok.svg'); }
+
+    .button-yt:hover { background-image: url('youtube2.svg'); }
+    .button-in:hover { background-image: url('instagram2.svg'); }
+    .button-bs:hover { background-image: url('bsky2.svg'); }
+    .button-ti:hover { background-image: url('tiktok2.svg'); }
+
+    .button-mu {
+      left: 50%;
+      bottom: 10%;
+      transform: translateX(-50%);
+      background-image: url('music.svg');
+      z-index: 6;
+    }
+    .button-mu:hover { background-image: url('music2.svg'); }
+
+    .dony {
+      width: 70vh;
+      height: 70vh;
+      left: 50%;
+      top: -10%;
+      transform: translateX(-50%);
+      z-index: 5;
+      cursor: pointer;
+      object-fit: contain;
+      pointer-events: auto;
+    }
+
+    .centered-text {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      font-size: 70px;
+      font-weight: 700;
+      color: white;
+      z-index: 7;
+      pointer-events: none;
+    }
+
+    @media (max-width: 1050px) {
+      :root { --btn-default-size: var(--btn-medium); }
+      .dony { width: 45vh; height: 45vh; top: -5%; }
+      .centered-text { font-size: 48px; }
+    }
+
+    @media (max-width: 450px) {
+      :root { --btn-default-size: var(--btn-small); }
+      .dony { width: 28vh; height: 28vh; top: 0%; }
+      .centered-text { font-size: 28px; }
+    }
+
+    .social-button:focus,
+    .button-mu:focus,
+    .dony:focus {
+      outline: 3px solid rgba(255,255,255,0.25);
+      outline-offset: 4px;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <div class="gradient"></div>
-        <img src="barres.png" class="lines" style="top: 50px; animation-delay: 0s;">
-        <img src="QUADRILLAGE.png" class="grid" style="top: 150px; animation-delay: 0s;">
-        <div class="frame"></div> <!-- Add the frame element here -->
-	<a href="https://www.youtube.com/@Adonys">
-		<button class=button-yt></button>
-	</a>
-	<a href="https://www.instagram.com/adonysyt">
-		<button class=button-in></button>
-	</a>
-	<a href="https://bsky.app/profile/adonys.yt">
-		<button class=button-bs></button>
-	</a>
-	<a href="https://www.tiktok.com/@adonysyt">
-		<button class=button-ti></button>
-	</a>
-	<audio id="bg-music" loop class=music volume=10%>
-        	<source src="2masterinst.mp3" type="audio/mpeg">
-        	Your browser does not support the audio element.
-    	</audio>
-	<button class=button-mu onClick=playAudio()></button>
-	<button class=dony id="donybutton"></button>
-	<div class=centered-text>yo</div>
-	<script>
-        	const button = document.getElementById('donybutton');
-        	const gif1 = 'idledony.gif';
-        	const gif2 = 'donytalk.gif';
-		const audio = document.getElementById('bg-music');
+  <div class="container" role="main"></div>
+  <div class="gradient" aria-hidden="true"></div>
+  <canvas id="gridCanvas" aria-hidden="true"></canvas>
+  <div class="frame" aria-hidden="true"></div>
 
-        	button.style.backgroundImage = `url(${gif1})`;
+  <a href="https://www.youtube.com/@Adonys" target="_blank" rel="noopener" aria-label="YouTube">
+    <button type="button" class="social-button button-yt"></button>
+  </a>
+  <a href="https://www.instagram.com/adonysyt" target="_blank" rel="noopener" aria-label="Instagram">
+    <button type="button" class="social-button button-in"></button>
+  </a>
+  <a href="https://bsky.app/profile/adonys.yt" target="_blank" rel="noopener" aria-label="Bluesky">
+    <button type="button" class="social-button button-bs"></button>
+  </a>
+  <a href="https://www.tiktok.com/@adonysyt" target="_blank" rel="noopener" aria-label="TikTok">
+    <button type="button" class="social-button button-ti"></button>
+  </a>
 
-        	button.addEventListener('click', () => {
-            	button.style.backgroundImage = `url(${gif2})`;
+  <img id="dony" class="dony" src="idledony.gif" alt="Dony">
 
-            	// Get the duration of the second GIF
-            	const img = new Image();
-            	img.src = gif2;
-            	img.onload = () => {
-            	    setTimeout(() => {
-            	        button.style.backgroundImage = `url(${gif1})`;
-            	    }, 500); // Convert duration to milliseconds
-            	};
-        	});
-    
-		let isPlaying = false;
+  <audio id="bg-music" loop>
+    <source src="2masterinst.mp3" type="audio/mpeg" />
+    Your browser does not support the audio element.
+  </audio>
 
-		function playAudio() {
-			audio.volume = 0.1;
-    			if (isPlaying) {
-        			audio.pause();
-    			} else {
-        			audio.play();
-    			}
-    			isPlaying = !isPlaying;
-		}
-	</script>
-    </div>
+  <button type="button" id="musicButton" class="button-mu" aria-pressed="false" aria-label="Toggle background music"></button>
+  <div class="centered-text">yo</div>
+
+  <script>
+    (function () {
+      const button = document.getElementById('dony');
+      const gifIdle = 'idledony.gif';
+      const gifTalk = 'donytalk.gif';
+      button.addEventListener('click', () => {
+        dony.src = gifTalk + '?t=' + Date.now();
+        setTimeout(() => {
+          dony.src = gifIdle;
+        }, 500);
+      });
+    })();
+
+    (function () {
+      const audio = document.getElementById('bg-music');
+      const musicButton = document.getElementById('musicButton');
+      let isPlaying = false;
+      audio.volume = 0.1;
+      function updateButtonState() {
+        musicButton.setAttribute('aria-pressed', String(isPlaying));
+      }
+      musicButton.addEventListener('click', () => {
+        if (isPlaying) audio.pause(); else audio.play().catch(()=>{});
+        isPlaying = !isPlaying;
+        updateButtonState();
+      });
+      audio.addEventListener('play', () => { isPlaying = true; updateButtonState(); });
+      audio.addEventListener('pause', () => { isPlaying = false; updateButtonState(); });
+    })();
+
+    (function () {
+      const canvas = document.getElementById('gridCanvas');
+      const gl = canvas.getContext('webgl', { antialias: true });
+      if (!gl) return;
+
+      function getDPR() { return Math.min(window.devicePixelRatio || 1, 1.5); }
+      function resizeCanvas() {
+        const dpr = getDPR();
+        const w = Math.max(1, Math.floor(window.innerWidth * dpr));
+        const h = Math.max(1, Math.floor(window.innerHeight * dpr));
+        if (canvas.width !== w || canvas.height !== h) {
+          canvas.width = w;
+          canvas.height = h;
+          canvas.style.width = window.innerWidth + 'px';
+          canvas.style.height = window.innerHeight + 'px';
+          gl.viewport(0, 0, w, h);
+        }
+      }
+      window.addEventListener('resize', resizeCanvas);
+      resizeCanvas();
+
+      const vsSource = `
+        attribute vec2 a_pos;
+        varying vec2 v_uv;
+        void main() {
+          v_uv = (a_pos + 1.0) * 0.5;
+          gl_Position = vec4(a_pos, 0.0, 1.0);
+        }
+      `;
+
+      const fsSource = `
+        precision mediump float;
+        uniform float u_time;
+        uniform float u_loopOffset;
+        uniform vec2  u_resolution;
+        uniform vec2  u_mouse;
+        varying vec2  v_uv;
+
+        float imod(float x, float m) { return x - floor(x / m) * m; }
+
+        float boxMask(vec2 local, vec2 size) {
+          vec2 a = step(abs(local), size);
+          return a.x * a.y;
+        }
+
+        void main() {
+          // Interaction UV (0..1)
+          vec2 uv = v_uv;
+
+          // Mouse bump aligned to cursor
+          float dist = distance(uv, u_mouse);
+          float bump = exp(-dist * 5.0);
+          uv += (uv - u_mouse) * bump * 0.15;
+
+          // Wave
+          uv.x += sin(uv.y * 6.0 + u_time) * 0.015;
+
+          // Grid space with aspect
+          float aspect = u_resolution.x / u_resolution.y;
+          vec2 uvGrid = uv;
+          uvGrid.x *= aspect;
+
+          // Grid scaling and continuous motion (no fract seam)
+          float gridScale = 10.0;
+          vec2 gridUV = uvGrid * gridScale;
+          gridUV.x += u_loopOffset * gridScale;
+
+          // Cells and local coords
+          vec2 cell  = floor(gridUV);
+          vec2 local = fract(gridUV) - 0.5;
+
+          // Square mask
+          vec2 squareSize = vec2(0.6, 0.6);
+          float sq = boxMask(local, squareSize);
+
+          // Checker fill
+          float checker = imod(cell.x + cell.y, 2.0);
+          float fill = 1.0 - checker;
+          float mask = sq * fill;
+
+          // Colors
+          vec3 blueA = vec3(0.06, 0.45, 0.85);
+          vec3 blueB = vec3(0.02, 0.35, 0.75);
+          float colAlt = imod(cell.x, 3.0) / 3.0;
+          vec3 color = mix(blueA, blueB, colAlt);
+          vec3 bg = vec3(0.01, 0.06, 0.12);
+
+          // Thin grid lines
+          vec2 g = fract(gridUV);
+          float edge = step(0.96, g.x) + step(0.96, g.y) + step(g.x, 0.04) + step(g.y, 0.04);
+          edge = clamp(edge, 0.0, 1.0);
+
+          vec3 finalColor = mix(bg, color, mask);
+          finalColor = mix(finalColor, vec3(0.02,0.08,0.18), edge * 0.9);
+
+          gl_FragColor = vec4(finalColor, 1.0);
+        }
+      `;
+
+      function compileShader(src, type) {
+        const s = gl.createShader(type);
+        gl.shaderSource(s, src);
+        gl.compileShader(s);
+        if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) {
+          console.error(gl.getShaderInfoLog(s));
+          gl.deleteShader(s);
+          return null;
+        }
+        return s;
+      }
+
+      const vert = compileShader(vsSource, gl.VERTEX_SHADER);
+      const frag = compileShader(fsSource, gl.FRAGMENT_SHADER);
+      if (!vert || !frag) return;
+
+      const program = gl.createProgram();
+      gl.attachShader(program, vert);
+      gl.attachShader(program, frag);
+      gl.linkProgram(program);
+      if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
+        console.error(gl.getProgramInfoLog(program));
+        return;
+      }
+      gl.useProgram(program);
+
+      const quadBuffer = gl.createBuffer();
+      gl.bindBuffer(gl.ARRAY_BUFFER, quadBuffer);
+      gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]), gl.STATIC_DRAW);
+      const aPos = gl.getAttribLocation(program, 'a_pos');
+      gl.enableVertexAttribArray(aPos);
+      gl.vertexAttribPointer(aPos, 2, gl.FLOAT, false, 0, 0);
+
+      const uTimeLoc  = gl.getUniformLocation(program, 'u_time');
+      const uLoopLoc  = gl.getUniformLocation(program, 'u_loopOffset');
+      const uResLoc   = gl.getUniformLocation(program, 'u_resolution');
+      const uMouseLoc = gl.getUniformLocation(program, 'u_mouse');
+
+      let mouse = [0, 0];
+      window.addEventListener('mousemove', e => {
+        const rect = canvas.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width;
+        const y = 1.0 - (e.clientY - rect.top) / rect.height;
+        mouse[0] = Math.min(Math.max(x, 0.0), 1.0);
+        mouse[1] = Math.min(Math.max(y, 0.0), 1.0);
+      });
+
+      const start = performance.now();
+      function render() {
+        resizeCanvas();
+        const now = performance.now();
+        const t = (now - start) / 1000;
+        const loopSpeed = -0.01;
+        const loopOffset = (t * loopSpeed) % 1.0;
+
+        gl.clearColor(0, 0, 0, 0);
+        gl.clear(gl.COLOR_BUFFER_BIT);
+
+        gl.uniform1f(uTimeLoc, t);
+        gl.uniform1f(uLoopLoc, loopOffset);
+        gl.uniform2f(uResLoc, canvas.width, canvas.height);
+        gl.uniform2f(uMouseLoc, mouse[0], mouse[1]);
+
+        gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+        requestAnimationFrame(render);
+      }
+      requestAnimationFrame(render);
+    })();
+  </script>
 </body>
 </html>
+
